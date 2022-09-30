@@ -42,7 +42,7 @@ void MyServer::initAllRoutes() {
         });
 
     this->on("/test", HTTP_GET, [](AsyncWebServerRequest *request) {
-        if (ptrToCallBackFunction) (*ptrToCallBackFunction)("test ")); 
+        if (ptrToCallBackFunction) (*ptrToCallBackFunction)("test "); 
         });
 
    //route si celle tapé n'existe pas
