@@ -40,6 +40,11 @@ void MyServer::initAllRoutes() {
     this->on("/index.css", HTTP_GET, [](AsyncWebServerRequest *request) {
         request->send(SPIFFS, "/index.css", "text/css");
         });
+
+    this->on("/test", HTTP_GET, [](AsyncWebServerRequest *request) {
+        if (ptrToCallBackFunction) (*ptrToCallBackFunction)("test ")); 
+        });
+
    //route si celle tapé n'existe pas
     this->onNotFound([](AsyncWebServerRequest *request){
         request->send(404, "text/plain", "Page Not Found");
