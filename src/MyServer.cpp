@@ -25,30 +25,44 @@ void MyServer::initAllRoutes() {
     if (!SPIFFS.begin(true)) {
         Serial.println("An Error has occurred while mounting SPIFFS");
         return;
-        }
+    }
 
     //Route initiale (page html)
     this->on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
         request->send(SPIFFS, "/index.html", "text/html");
-        });
+    });
 
     //Route du script JavaScript
     this->on("/script.js", HTTP_GET, [](AsyncWebServerRequest *request) {
         request->send(SPIFFS, "/script.js", "text/javascript");
-        });
+    });
 
     this->on("/index.css", HTTP_GET, [](AsyncWebServerRequest *request) {
         request->send(SPIFFS, "/index.css", "text/css");
-        });
+    });
 
     this->on("/test", HTTP_GET, [](AsyncWebServerRequest *request) {
-        if (ptrToCallBackFunction) (*ptrToCallBackFunction)("test ")); 
-        });
+        if (ptrToCallBackFunction) (*ptrToCallBackFunction)("test "); 
+    });
+
+    this->on("/getNomEsp", HTTP_GET, [](AsyncWebServerRequest *request) {
+        std::string repString = "";
+        if (ptrToCallBackFunction) repString = (*ptrToCallBackFunction)("askNomFour");
+        String lireNomDuFour =String(repString.c_str());
+        request->send(200, "text/plain", lireNomDuFour );
+    });
+
+    this->on("/lireTemp ", HTTP_GET, [](AsyncWebServerRequest *request) {
+        std::string repString = "";
+        if (ptrToCallBackFunction) repString = (*ptrToCallBackFunction)("askTempFour");
+        String lireTempDuFour =String(repString.c_str());
+        request->send(200, "text/plain", lireTempDuFour );
+    });
 
    //route si celle tapé n'existe pas
     this->onNotFound([](AsyncWebServerRequest *request){
         request->send(404, "text/plain", "Page Not Found");
-        });
-    
+    });
+
     this->begin();
 };
