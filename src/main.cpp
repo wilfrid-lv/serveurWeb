@@ -98,8 +98,8 @@ std::string CallBackMessageListener(string message) {
         }
 
     if (string(actionToDo.c_str()).compare(string("test")) == 0) {
+        //  Serial.println("test a fonctionné");
          return(String("Ok").c_str());
-         Serial.println("test a fonctionné");
         }
    
     std::string result = "";

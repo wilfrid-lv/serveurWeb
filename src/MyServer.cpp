@@ -42,6 +42,7 @@ void MyServer::initAllRoutes() {
         });
 
     this->on("/test", HTTP_GET, [](AsyncWebServerRequest *request) {
+        Serial.println("test a fonctionné");
         if (ptrToCallBackFunction) (*ptrToCallBackFunction)("test "); 
         });
 
