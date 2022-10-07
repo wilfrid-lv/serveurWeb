@@ -10,11 +10,12 @@ function getFromESP_getNom () {
 }
 
 setInterval(
-    function getNomSysteme(){
+    function getTempSysteme(){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if(this.status == 200) {
-                document.getElementById("temp").value = this.responseText;
+                alert(this.responseText);
+                document.getElementById("temp").innerHTML = this.responseText;
             }
         };
         xhttp.open("GET", "lireTemp", true);
