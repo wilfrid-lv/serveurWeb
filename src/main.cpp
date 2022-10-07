@@ -110,10 +110,12 @@ std::string CallBackMessageListener(string message) {
     if (string(actionToDo.c_str()).compare(string("askNomFour")) == 0) {
     return(nomDuFour.c_str()); }
     
-    string actionToDo = getValue(message, ' ', 0);
+    string actionToDo2 = getValue(message, ' ', 0);
     std::string tempDuFour = "22"; //Lire le senseur de température
-    if (string(actionToDo.c_str()).compare(string("askTempFour ")) == 0) {
-    return(tempDuFour.c_str()); }
+    if (string(actionToDo2.c_str()).compare(string("askTempFour")) == 0) {
+        return(tempDuFour.c_str());
+    }
+    return tempDuFour.c_str();
 }
 
 void setup() { 

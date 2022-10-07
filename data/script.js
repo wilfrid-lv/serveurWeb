@@ -13,9 +13,9 @@ setInterval(
     function getNomSysteme(){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-        if(this.status == 200) {
-        document.getElementById("temp").value = this.responseText;
-        }
+            if(this.status == 200) {
+                document.getElementById("temp").value = this.responseText;
+            }
         };
         xhttp.open("GET", "lireTemp", true);
         xhttp.send();
